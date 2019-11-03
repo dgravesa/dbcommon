@@ -6,17 +6,17 @@ import (
 	"gopkg.in/yaml.v2"
 )
 
-// DBConfig provides a database server configuration
-type DBConfig struct {
+// Config provides a database server configuration
+type Config struct {
 	Username string `yaml:"username"`
 	Passkey  string `yaml:"passkey"`
 	Host     string `yaml:"hostname"`
 	Port     int    `yaml:"port"`
 }
 
-// ReadDBConfig loads a database configuration from a file.
-func ReadDBConfig(fname string) (*DBConfig, error) {
-	var config DBConfig
+// ReadConfig loads a database configuration from a file.
+func ReadConfig(fname string) (*Config, error) {
+	var config Config
 	f, err := os.Open(fname)
 
 	if err == nil {

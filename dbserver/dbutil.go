@@ -11,16 +11,16 @@ import (
 // StartupDB is a convenience method to connect to a database named dbName or create it if it doesn't exist,
 // on the server specified by the configuration in file named cfgName.
 func StartupDB(cfgName, dbName string) (*sql.DB, error) {
-	var config *DBConfig
+	var config *Config
 	var err error
 
-	if config, err = ReadDBConfig(cfgName); err != nil {
+	if config, err = ReadConfig(cfgName); err != nil {
 		return nil, err
 	}
 
 	// connect to database server
 	var srv *sql.DB
-	if srv, err = ConnectToServer(*config); err != nil {
+	if srv, err = Connect(*config); err != nil {
 		return nil, err
 	}
 
@@ -39,13 +39,13 @@ func StartupDB(cfgName, dbName string) (*sql.DB, error) {
 	return db, err
 }
 
-// ConnectToServer creates a connection to a database server
-func ConnectToServer(config DBConfig) (*sql.DB, error) {
+// Connect creates a connection to a database server.
+func Connect(config Config) (*sql.DB, error) {
 	return ConnectToDB(config, "")
 }
 
 // ConnectToDB creates a connection to a database named dbName on a server pointed to by config.
-func ConnectToDB(config DBConfig, dbName string) (*sql.DB, error) {
+func ConnectToDB(config Config, dbName string) (*sql.DB, error) {
 	// get passphrase from key file
 	var passphrase string
 	if content, err := ioutil.ReadFile(config.Passkey); err == nil {
