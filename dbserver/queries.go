@@ -1,4 +1,4 @@
-package dbcommon
+package dbserver
 
 const dbFindDatabaseByNameQuery string = `
 SELECT EXISTS(

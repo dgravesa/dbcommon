@@ -1,4 +1,4 @@
-package dbcommon
+package dbserver
 
 import (
 	"database/sql"
