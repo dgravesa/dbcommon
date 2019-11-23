@@ -1,4 +1,4 @@
-module bitbucket.org/waterlogger/dbcommon
+module github.com/dgravesa/dbcommon
 
 go 1.13
 
